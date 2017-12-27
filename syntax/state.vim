@@ -15,11 +15,14 @@ endif
 
 syn keyword stateTodo		FIXME NOTE NOTES TODO XXX contained
 syn match   stateComment	"//.*$" contains=stateTodo,@Spell
-syn match   stateOperator	"#[a-z&|><=!]*@"
-syn match   stateOperator	"[=|&\*\+\<\>]"
 syn match   stateDelimiter  "[{}()\[\];,]"
-syn match   stateLabel      "[a-zA-Z0-9_]\{-}="
+"syn match   stateLabel      "[a-zA-Z0-9_]\{-}="
 syn match   stateLabel      "^[a-zA-Z0-9_]*"
+syn match   stateLabelMid   "\h\w*" display contained
+syn match   stateOperator	"[=|&\*\+\<\>]"
+syn match   stateOperatorLogical	"#||@" nextgroup=stateLabelMid skipwhite
+syn match   stateOperatorLogical	"#&&@" nextgroup=stateLabelMid skipwhite
+syn match   stateOperatorComparison	"#[a-z><=!]*@"
 
 syn match   stateNumber	    "\<0[oO]\=\o\+[Ll]\=\>"
 syn match   stateNumber	    "\<0[xX]\x\+[Ll]\=\>"
@@ -42,11 +45,14 @@ hi def link stateDelimiter  Delimiter
 hi def link stateNumber     Number
 hi def link stateString     String
 hi def link stateLabel      Type
+hi def link stateLabelMid   Type
 hi def link stateString		String
-hi def link stateOperator	Operator
 hi def link stateTodo		Todo
 hi def link stateComment	Comment
 hi def link stateNumber		Number
 hi def link stateHeader     Special
+hi def link stateOperator	Operator
+hi def link stateOperatorLogical	Operator
+hi def link stateOperatorComparison	Operator
 
 let b:current_syntax = "state"
