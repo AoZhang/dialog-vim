@@ -17,7 +17,7 @@ syn keyword stateTodo		FIXME NOTE NOTES TODO XXX contained
 syn match   stateComment	"//.*$" contains=stateTodo,@Spell
 syn match   stateDelimiter  "[{}()\[\];,]"
 "syn match   stateLabel      "[a-zA-Z0-9_]\{-}="
-syn match   stateLabel      "^[a-zA-Z0-9_]*"
+syn match   stateLabel      "^#\?[a-zA-Z0-9_]*"
 syn match   stateLabelMid   "\h\w*" display contained
 syn match   stateOperator	"[=|&\*\+\<\>]"
 syn match   stateOperatorLogical	"#||@" nextgroup=stateLabelMid skipwhite
